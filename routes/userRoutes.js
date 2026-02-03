@@ -1,21 +1,25 @@
 import express from "express";
+// import { User } from "../models/userModel.js";
+import { createUser, deleteUserById, getAllUsers, getUserById, updateUserById } from "../controllers/userControllers.js";
 
 export const userRoutes = express.Router();
 
-userRoutes.get("/home", (req, res) => {
+// -------------- Get All Users ----------------
 
-    res.send("Home Page");
+userRoutes.get('/' , getAllUsers)
 
-});
+// -------------- Get User By Id ----------------
 
-userRoutes.get("/about", (req, res) => {
+userRoutes.get('/:id' , getUserById)
 
-    res.send("About Page");
+// -------------- Add User ----------------
 
-});
+userRoutes.post('/add' , createUser)
 
-userRoutes.get("/contact", (req, res) => {
+// -------------- Update User ----------------
 
-    res.send("Contact Page");
+userRoutes.put("/update/:id", updateUserById);
 
-});
+// -------------- Delete User ----------------
+
+userRoutes.delete("/delete/:id", deleteUserById);
